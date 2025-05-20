@@ -18,7 +18,7 @@ O jogo consiste em um tabuleiro com cartas viradas para baixo. O jogador deve cl
 - Tela com os 10 melhores resultados;
 - Botão para reiniciar o jogo.
 
-## 🧩 Tecnologias usadas
+## Tecnologias usadas
 - Java
 - Swing
 - CSV
