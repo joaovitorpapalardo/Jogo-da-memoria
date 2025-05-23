@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"v02","c":"JogoMemoria","l":"JogoMemoria()","u":"%3Cinit%3E()"}];updateSearchResults();
