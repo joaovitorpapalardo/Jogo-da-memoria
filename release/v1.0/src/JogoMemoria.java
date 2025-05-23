@@ -47,10 +47,18 @@ public class JogoMemoria extends JFrame {
 
         for (int valorCarta : listaValoresCartas) {
             BotaoCarta botao = new BotaoCarta(valorCarta);
+
+            botao.setFont(new Font("SansSerif", Font.BOLD, 28));
+            botao.setPreferredSize(new Dimension(80, 80));
+            botao.setBackground(new Color(220, 220, 250));
+            botao.setFocusPainted(false);
+            botao.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
+
             botao.addActionListener(e -> aoClicarCarta(botao));
             listaBotoesCarta.add(botao);
             painelCartas.add(botao);
         }
+
 
         getContentPane().add(painelCartas, BorderLayout.CENTER);
         revalidate();
