@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"v1","l":"BotaoCarta"},{"p":"v1","l":"JogoMemoria"},{"p":"v1","l":"Main"},{"p":"v1","l":"Placares"},{"p":"v1","l":"TelaRanking"}];updateSearchResults();
