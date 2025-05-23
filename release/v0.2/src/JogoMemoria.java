@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Representa a janela principal do jogo da memória com interface gráfica.
+ * Gerencia a lógica do jogo, interface e interação com o jogador.
+ * @author joaovitorpapalardo, joaovitorrodrigues, milenacampos, nicolasbabo
+ * @version 0.2
+ */
 public class JogoMemoria extends JFrame {
     private final List<BotaoCarta> listaBotoesCarta = new ArrayList<>();
     private BotaoCarta cartaSelecionada1 = null;
@@ -13,12 +19,18 @@ public class JogoMemoria extends JFrame {
     private int totalTentativas = 0;
     private JLabel rotuloTentativas;
     private JButton botaoReiniciar;
-
+    
+    /**
+     * Construtor da classe. Inicializa a interface e inicia o jogo.
+     */
     public JogoMemoria() {
         configurarInterface();
         iniciarJogo();
     }
-
+    
+    /**
+     * Configura a interface gráfica do jogo, incluindo rótulo de tentativas e botão de reinício.
+     */
     private void configurarInterface() {
         setTitle("Jogo da Memoria");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -34,7 +46,10 @@ public class JogoMemoria extends JFrame {
 
         setSize(400, 450);
     }
-
+    
+    /**
+     * Inicia ou reinicia o jogo, criando e embaralhando as cartas, e resetando o estado.
+     */
     private void iniciarJogo() {
         JPanel painelCartas = new JPanel(new GridLayout(4, 4));
         List<Integer> listaValoresCartas = gerarValoresCartas(8); // 8 pares
@@ -66,7 +81,12 @@ public class JogoMemoria extends JFrame {
         Collections.shuffle(valores);
         return valores;
     }
-
+    
+    /**
+     * Lida com a lógica ao clicar em uma carta: revela, compara e verifica fim do jogo.
+     *
+     * @param cartaClicada a carta clicada pelo jogador
+     */
     private void aoClicarCarta(BotaoCarta cartaClicada) {
         if (cartaClicada.estaRevelada()) return;
         if (cartaSelecionada1 != null && cartaSelecionada2 != null) return;
@@ -98,14 +118,22 @@ public class JogoMemoria extends JFrame {
             }
         }
     }
-
+    
+    /**
+     * Verifica se todas as cartas foram reveladas e finaliza o jogo se necessário.
+     */
     private void verificarFimDeJogo() {
         boolean todasReveladas = listaBotoesCarta.stream().allMatch(BotaoCarta::estaRevelada);
         if (todasReveladas) {
             JOptionPane.showMessageDialog(this, "Fim de jogo! Total de tentativas: " + totalTentativas);
         }
     }
-
+    
+    /**
+     * Reinicia o jogo removendo os componentes e reconfigurando a interface.
+     * Botao reiniciar
+     * @since 0.2
+     */
     private void reiniciarJogo() {
         getContentPane().removeAll();
         configurarInterface();
