@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Representa a janela principal do jogo da memória com interface gráfica.
+ * Gerencia a lógica do jogo, interface e interação com o jogador.
+ * @author joaovitorpapalardo, joaovitorrodrigues, milenacamposm, nicolasbabo
+ * @version 1.0
+ */
 public class JogoMemoria extends JFrame {
     private final List<BotaoCarta> listaBotoesCarta = new ArrayList<>();
     private BotaoCarta cartaSelecionada1 = null;
@@ -13,12 +19,18 @@ public class JogoMemoria extends JFrame {
     private int totalTentativas = 0;
     private JLabel rotuloTentativas;
     private JButton botaoReiniciar;
-
+    
+    /**
+     * Construtor da classe. Inicializa a interface e inicia o jogo.
+     */
     public JogoMemoria() {
         configurarInterface();
         iniciarJogo();
     }
-
+    
+    /**
+     * Configura a interface gráfica do jogo, incluindo rótulo de tentativas e botão de reinício.
+     */
     private void configurarInterface() {
         setTitle("Jogo da Memoria");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -34,7 +46,10 @@ public class JogoMemoria extends JFrame {
 
         setSize(400, 450);
     }
-
+    
+    /**
+     * Inicia ou reinicia o jogo, criando e embaralhando as cartas, e resetando o estado.
+     */
     private void iniciarJogo() {
         JPanel painelCartas = new JPanel(new GridLayout(4, 4));
         List<Integer> listaValoresCartas = gerarValoresCartas(8); // 8 pares
@@ -64,7 +79,13 @@ public class JogoMemoria extends JFrame {
         revalidate();
         repaint();
     }
-
+    
+    /**
+     * Gera uma lista de valores duplicados e embaralhados para representar pares de cartas.
+     *
+     * @param quantidadePares o número de pares de cartas
+     * @return lista embaralhada de valores de cartas
+     */
     private List<Integer> gerarValoresCartas(int quantidadePares) {
         List<Integer> valores = new ArrayList<>();
         for (int i = 1; i <= quantidadePares; i++) {
@@ -74,7 +95,12 @@ public class JogoMemoria extends JFrame {
         Collections.shuffle(valores);
         return valores;
     }
-
+    
+    /**
+     * Lida com a lógica ao clicar em uma carta: revela, compara e verifica fim do jogo.
+     *
+     * @param cartaClicada a carta clicada pelo jogador
+     */
     private void aoClicarCarta(BotaoCarta cartaClicada) {
         if (cartaClicada.estaRevelada()) return;
         if (cartaSelecionada1 != null && cartaSelecionada2 != null) return;
@@ -89,12 +115,10 @@ public class JogoMemoria extends JFrame {
             rotuloTentativas.setText("Tentativas: " + totalTentativas);
 
             if (cartaSelecionada1.getValor() == cartaSelecionada2.getValor()) {
-                // São iguais → permanecem reveladas
                 cartaSelecionada1 = null;
                 cartaSelecionada2 = null;
                 verificarFimDeJogo();
             } else {
-                // Diferentes → esconder após 1 segundo
                 Timer temporizador = new Timer(1000, e -> {
                     cartaSelecionada1.esconder();
                     cartaSelecionada2.esconder();
@@ -106,7 +130,12 @@ public class JogoMemoria extends JFrame {
             }
         }
     }
-
+    
+    /**
+     * Verifica se todas as cartas foram reveladas e finaliza o jogo se necessário.
+     * Solicita o nome do jogador, salva o placar e exibe o ranking.
+     * @since 1.0
+     */
     private void verificarFimDeJogo() {
         boolean todasReveladas = listaBotoesCarta.stream().allMatch(BotaoCarta::estaRevelada);
         if (todasReveladas) {
@@ -115,10 +144,8 @@ public class JogoMemoria extends JFrame {
                 nomeJogador = "Jogador";
             }
 
-            // Salva no CSV
             Placares.salvarPlacar(nomeJogador, totalTentativas);
 
-            // Mostra confirmação e ranking
             JOptionPane.showMessageDialog(this, "Parabéns " + nomeJogador + "! Você terminou com " + totalTentativas + " tentativas.");
 
             TelaRanking ranking = new TelaRanking();
@@ -126,7 +153,10 @@ public class JogoMemoria extends JFrame {
         }
     }
 
-
+    
+    /**
+     * Reinicia o jogo removendo os componentes e reconfigurando a interface.
+     */
     private void reiniciarJogo() {
         getContentPane().removeAll();
         configurarInterface();
