@@ -1,6 +1,8 @@
 
 # Jogo da Memória - Java
 
+@authors JoaoVitorPapalardo, JoaoVictorRodrigues, MilenaCampos, NicolasBabo
+
 Um projeto de **Jogo da Memória**, desenvolvido como parte da disciplina de **Programação Orientada a Objetos II**, do curso de Ciência da Computação.  
 A aplicação foi criada utilizando a linguagem **Java** com **Swing** para a construção da interface gráfica.
 
