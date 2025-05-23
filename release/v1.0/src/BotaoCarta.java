@@ -41,6 +41,9 @@ public class BotaoCarta extends JButton {
     
     /**
      * Revela a carta, exibindo seu valor e marcando como revelada.
+     * Fonte alterada
+     * @since 1.0
+     * 
      */
     public void revelar() {
         setText(String.valueOf(valor));
@@ -50,6 +53,8 @@ public class BotaoCarta extends JButton {
     
     /**
      * Esconde a carta, exibindo "?" e marcando como não revelada.
+     * Fonte alterada
+     * @since 1.0
      */
     public void esconder() {
         setText("?");
