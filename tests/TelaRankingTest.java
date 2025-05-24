@@ -1,4 +1,4 @@
-package v1;
+package tests;
 
 import org.junit.jupiter.api.*;
 import javax.swing.*;
